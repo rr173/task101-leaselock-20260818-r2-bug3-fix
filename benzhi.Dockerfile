@@ -11,7 +11,7 @@ RUN go mod download
 
 COPY . .
 # 预编译一次，把编译缓存留在镜像里；不影响模型修改源码
-RUN go build -mod=mod ./...
+RUN go build ./...
 
 # 容器启动后进入 shell，方便操作
 CMD ["bash"]

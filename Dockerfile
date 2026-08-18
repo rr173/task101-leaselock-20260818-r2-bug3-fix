@@ -10,7 +10,7 @@ ENV CGO_ENABLED=0 \
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
-RUN go build -mod=mod -o /out/task101-leaselock .
+RUN go build -o /out/task101-leaselock .
 
 # runtime: minimal image
 FROM docker.m.daocloud.io/library/alpine:3.20

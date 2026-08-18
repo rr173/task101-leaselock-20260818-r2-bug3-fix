@@ -27,9 +27,9 @@
 ## 本地命令
 
 ```bash
-go build -mod=mod ./... # 编译
+go build ./... # 编译
 go run . --smoke-test    # 自检（不监听端口，成功退出码 0）
-go test -mod=mod ./...   # 单元测试（clock / lease / store / main）
+go test ./...   # 单元测试（clock / lease / store / main）
 ```
 
 启动 HTTP 服务：`go run . --db ./leases.db`（默认监听 `:8080`，可用 `--addr :9090` 指定）。
