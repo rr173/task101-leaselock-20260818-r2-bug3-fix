@@ -259,12 +259,12 @@ func (s *Store) ListWaiters(resource string, status lease.WaiterStatus) ([]lease
 				CreatedAt: time.Unix(0, p.CreatedAt), Status: p.Status, GrantedToken: lease.Token(p.GrantedToken),
 			})
 		}
-		// Sort by CreatedAt then ID for stable ordering.
+		// Sort by CreatedAt then ID for stable oldest-first ordering.
 		sort.Slice(collected, func(i, j int) bool {
 			if !collected[i].CreatedAt.Equal(collected[j].CreatedAt) {
-				return collected[i].CreatedAt.After(collected[j].CreatedAt)
+				return collected[i].CreatedAt.Before(collected[j].CreatedAt)
 			}
-			return collected[i].ID > collected[j].ID
+			return collected[i].ID < collected[j].ID
 		})
 		out = collected
 		return nil
